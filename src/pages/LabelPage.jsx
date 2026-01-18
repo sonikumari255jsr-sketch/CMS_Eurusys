@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import Header from "./Header";
+import Header from "../components/Header";
 import './LabelPage.css';
 
 const FIELD_TYPES = ["Text", "Date", "Signature", "Checkbox"];

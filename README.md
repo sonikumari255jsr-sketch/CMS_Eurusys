@@ -112,21 +112,24 @@ CMS_Eurusys/
 │   ├── eurosys-logo.png          # Company logo
 │   └── vite.svg                  # Vite logo
 ├── src/
-│   ├── components/
-│   │   └── Header.jsx            # Navigation header with logo
-│   ├── pages/
-│   │   ├── BlueprintPage.jsx     # Blueprint creation interface
-│   │   ├── LabelPage.jsx         # Field management for blueprints
-│   │   └── DashboardPage.jsx     # Contract dashboard and editor
-│   ├── styles/
-│   │   ├── App.css               # Main application styles
-│   │   ├── Header.css            # Header component styles
-│   │   ├── BlueprintPage.css     # Blueprint page styles
-│   │   ├── LabelPage.css         # Label page styles
-│   │   └── DashboardPage.css     # Dashboard page styles
-│   ├── App.jsx                   # Main app with routing
-│   ├── main.jsx                  # Application entry point
-│   └── index.css                 # Global styles and CSS variables
+│   ├── components/               # Reusable UI components
+│   │   ├── Header.jsx           # Navigation header with logo
+│   │   ├── Header.css
+│   │   ├── Footer.jsx           # Contact footer
+│   │   └── Footer.css
+│   ├── pages/                   # Page-level components
+│   │   ├── BlueprintPage.jsx    # Blueprint creation interface
+│   │   ├── BlueprintPage.css
+│   │   ├── LabelPage.jsx        # Field management for blueprints
+│   │   ├── LabelPage.css
+│   │   ├── DashboardPage.jsx    # Contract dashboard and editor
+│   │   └── DashboardPage.css
+│   ├── styles/                  # Global and app-level styles
+│   │   └── App.css              # App component styles
+│   ├── assets/                  # Static assets
+│   ├── App.jsx                  # Main app with routing
+│   ├── main.jsx                 # Application entry point
+│   └── index.css                # Global styles and CSS variables
 ├── package.json                  # Dependencies and scripts
 ├── vite.config.js               # Vite configuration
 ├── eslint.config.js             # ESLint configuration
