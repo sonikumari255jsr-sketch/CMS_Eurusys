@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlueprintPage from "./BlueprintPage";
 import LabelPage from "./LabelPage";
 import DashboardPage from "./DashboardPage";
+import Footer from "./Footer";
 
 /* ================== CONSTANTS ================== */
 const CONTRACT_STATUS = {
@@ -36,26 +37,19 @@ const FIELD_TYPES = ["Text", "Date", "Checkbox", "Signature"];
 
 /* ================== APP ================== */
 export default function App() {
-  const [blueprints, setBlueprints] = useState([]);
-  const [contracts, setContracts] = useState([]);
-  const [activeContractId, setActiveContractId] = useState(null);
+  const [blueprints, setBlueprints] = useState(() => {
+    const saved = localStorage.getItem('blueprints');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // Load data from localStorage on mount
-  useEffect(() => {
-    const savedBlueprints = localStorage.getItem('blueprints');
-    const savedContracts = localStorage.getItem('contracts');
-    const savedActiveContractId = localStorage.getItem('activeContractId');
+  const [contracts, setContracts] = useState(() => {
+    const saved = localStorage.getItem('contracts');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-    if (savedBlueprints) {
-      setBlueprints(JSON.parse(savedBlueprints));
-    }
-    if (savedContracts) {
-      setContracts(JSON.parse(savedContracts));
-    }
-    if (savedActiveContractId) {
-      setActiveContractId(savedActiveContractId);
-    }
-  }, []);
+  const [activeContractId, setActiveContractId] = useState(() => {
+    return localStorage.getItem('activeContractId') || null;
+  });
 
   // Save data to localStorage whenever state changes
   useEffect(() => {
@@ -75,39 +69,42 @@ export default function App() {
   }, [activeContractId]);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <BlueprintPage
-              blueprints={blueprints}
-              setBlueprints={setBlueprints}
-            />
-          }
-        />
-        <Route
-          path="/add-label/:blueprintId"
-          element={
-            <LabelPage
-              blueprints={blueprints}
-              setBlueprints={setBlueprints}
-            />
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <DashboardPage
-              blueprints={blueprints}
-              contracts={contracts}
-              setContracts={setContracts}
-              activeContractId={activeContractId}
-              setActiveContractId={setActiveContractId}
-            />
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <div className="app">
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <BlueprintPage
+                blueprints={blueprints}
+                setBlueprints={setBlueprints}
+              />
+            }
+          />
+          <Route
+            path="/add-label/:blueprintId"
+            element={
+              <LabelPage
+                blueprints={blueprints}
+                setBlueprints={setBlueprints}
+              />
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <DashboardPage
+                blueprints={blueprints}
+                contracts={contracts}
+                setContracts={setContracts}
+                activeContractId={activeContractId}
+                setActiveContractId={setActiveContractId}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+      <Footer />
+    </div>
   );
 }

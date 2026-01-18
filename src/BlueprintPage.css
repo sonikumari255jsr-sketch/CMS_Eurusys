@@ -1,5 +1,7 @@
 .blueprint-page {
-  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .page-header {
@@ -28,9 +30,23 @@
 
 .blueprint-page .panel {
   display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.create-blueprint-section {
+  display: flex;
   gap: 16px;
   align-items: flex-end;
   flex-wrap: wrap;
+}
+
+.sample-data-section {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
 }
 
 .input-group {

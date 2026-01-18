@@ -3,6 +3,46 @@ import { Link } from "react-router-dom";
 import Header from "./Header";
 import './BlueprintPage.css';
 
+// Sample blueprints data
+const sampleBlueprints = [
+  {
+    id: crypto.randomUUID(),
+    name: "Employment Contract",
+    fields: [
+      { id: crypto.randomUUID(), label: "Employee Name", type: "Text", x: 50, y: 50 },
+      { id: crypto.randomUUID(), label: "Position", type: "Text", x: 400, y: 50 },
+      { id: crypto.randomUUID(), label: "Start Date", type: "Date", x: 50, y: 120 },
+      { id: crypto.randomUUID(), label: "Salary", type: "Text", x: 400, y: 120 },
+      { id: crypto.randomUUID(), label: "Employee Signature", type: "Signature", x: 50, y: 190 },
+      { id: crypto.randomUUID(), label: "Manager Signature", type: "Signature", x: 400, y: 190 },
+    ]
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "Service Agreement",
+    fields: [
+      { id: crypto.randomUUID(), label: "Client Name", type: "Text", x: 50, y: 50 },
+      { id: crypto.randomUUID(), label: "Service Description", type: "Text", x: 50, y: 120 },
+      { id: crypto.randomUUID(), label: "Contract Value", type: "Text", x: 400, y: 50 },
+      { id: crypto.randomUUID(), label: "Start Date", type: "Date", x: 400, y: 120 },
+      { id: crypto.randomUUID(), label: "Terms Accepted", type: "Checkbox", x: 50, y: 190 },
+      { id: crypto.randomUUID(), label: "Client Signature", type: "Signature", x: 400, y: 190 },
+    ]
+  },
+  {
+    id: crypto.randomUUID(),
+    name: "NDA Agreement",
+    fields: [
+      { id: crypto.randomUUID(), label: "Party A", type: "Text", x: 50, y: 50 },
+      { id: crypto.randomUUID(), label: "Party B", type: "Text", x: 400, y: 50 },
+      { id: crypto.randomUUID(), label: "Effective Date", type: "Date", x: 50, y: 120 },
+      { id: crypto.randomUUID(), label: "Confidential Information", type: "Text", x: 50, y: 190 },
+      { id: crypto.randomUUID(), label: "Party A Signature", type: "Signature", x: 50, y: 260 },
+      { id: crypto.randomUUID(), label: "Party B Signature", type: "Signature", x: 400, y: 260 },
+    ]
+  }
+];
+
 export default function BlueprintPage({ blueprints, setBlueprints }) {
   const [newBlueprintName, setNewBlueprintName] = useState("");
 
@@ -18,6 +58,22 @@ export default function BlueprintPage({ blueprints, setBlueprints }) {
     alert("Blueprint created!");
   }
 
+  function loadSampleData() {
+    // Clear existing blueprints first, then add sample data
+    setBlueprints([...sampleBlueprints]);
+    alert("Sample blueprints loaded! You can now create contracts from these templates.");
+  }
+
+  function clearAllData() {
+    if (confirm("Are you sure you want to clear all blueprints and contracts? This action cannot be undone.")) {
+      setBlueprints([]);
+      // Also clear contracts from localStorage
+      localStorage.removeItem('contracts');
+      localStorage.removeItem('activeContractId');
+      alert("All data cleared!");
+    }
+  }
+
   return (
     <div className="blueprint-page">
       <Header />
@@ -30,17 +86,23 @@ export default function BlueprintPage({ blueprints, setBlueprints }) {
       <div className="create-section">
         <h2>Create New Blueprint</h2>
         <div className="panel">
-          <div className="input-group">
-            <label>Blueprint Name:</label>
-            <input
-              type="text"
-              placeholder="Enter blueprint name"
-              value={newBlueprintName}
-              onChange={(e) => setNewBlueprintName(e.target.value)}
-              className="input"
-            />
+          <div className="create-blueprint-section">
+            <div className="input-group">
+              <label>Blueprint Name:</label>
+              <input
+                type="text"
+                placeholder="Enter blueprint name"
+                value={newBlueprintName}
+                onChange={(e) => setNewBlueprintName(e.target.value)}
+                className="input"
+              />
+            </div>
+            <button onClick={createBlueprint} className="primary-btn">Create Blueprint</button>
           </div>
-          <button onClick={createBlueprint} className="primary-btn">Create Blueprint</button>
+          <div className="sample-data-section">
+            <button onClick={loadSampleData} className="secondary-btn">Load Sample Data</button>
+            <button onClick={clearAllData} className="clear-btn">Clear All Data</button>
+          </div>
         </div>
       </div>
 
