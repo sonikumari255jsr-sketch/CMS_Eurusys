@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BlueprintPage from "./BlueprintPage";
-import LabelPage from "./LabelPage";
-import DashboardPage from "./DashboardPage";
-import Footer from "./Footer";
+import BlueprintPage from "./pages/BlueprintPage";
+import LabelPage from "./pages/LabelPage";
+import DashboardPage from "./pages/DashboardPage";
+import Footer from "./components/Footer";
 
 /* ================== CONSTANTS ================== */
 const CONTRACT_STATUS = {

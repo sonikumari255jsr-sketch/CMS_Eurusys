@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "./Header";
+import Header from "../components/Header";
 import './DashboardPage.css';
 
 const CONTRACT_STATUS = {
