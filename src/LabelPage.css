@@ -1,0 +1,44 @@
+.label-page {
+  min-height: 100vh;
+}
+
+.label-page h1 {
+  margin-bottom: 20px;
+}
+
+.label-page .panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.label-page ul {
+  margin-bottom: 20px;
+}
+
+.label-page li {
+  padding: 12px;
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
