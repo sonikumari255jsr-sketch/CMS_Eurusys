@@ -1,16 +1,18 @@
 .app-header {
   background: linear-gradient(135deg, var(--primary-color) 0%, #b8946f 100%);
   color: #fff;
-  padding: 16px 40px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
   position: sticky;
   top: 0;
   z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .header-content {
   max-width: 1200px;
   margin: 0 auto;
+  padding: 16px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,4 +76,32 @@
 
 .nav-item.active {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 12px 20px;
+  }
+
+  .logo-main {
+    font-size: 20px;
+  }
+
+  .logo-sub {
+    font-size: 12px;
+  }
+
+  .logo-tagline {
+    font-size: 10px;
+  }
+
+  .main-nav {
+    gap: 16px;
+  }
+
+  .nav-item {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
 }

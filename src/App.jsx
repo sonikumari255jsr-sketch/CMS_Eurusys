@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import BlueprintPage from "./BlueprintPage";
 import LabelPage from "./LabelPage";
 import DashboardPage from "./DashboardPage";
+import Footer from "./Footer";
 
 /* ================== CONSTANTS ================== */
 const CONTRACT_STATUS = {
@@ -68,39 +69,42 @@ export default function App() {
   }, [activeContractId]);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <BlueprintPage
-              blueprints={blueprints}
-              setBlueprints={setBlueprints}
-            />
-          }
-        />
-        <Route
-          path="/add-label/:blueprintId"
-          element={
-            <LabelPage
-              blueprints={blueprints}
-              setBlueprints={setBlueprints}
-            />
-          }
-        />
-        <Route
-          path="/dashboard"
-          element={
-            <DashboardPage
-              blueprints={blueprints}
-              contracts={contracts}
-              setContracts={setContracts}
-              activeContractId={activeContractId}
-              setActiveContractId={setActiveContractId}
-            />
-          }
-        />
-      </Routes>
-    </BrowserRouter>
+    <div className="app">
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <BlueprintPage
+                blueprints={blueprints}
+                setBlueprints={setBlueprints}
+              />
+            }
+          />
+          <Route
+            path="/add-label/:blueprintId"
+            element={
+              <LabelPage
+                blueprints={blueprints}
+                setBlueprints={setBlueprints}
+              />
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <DashboardPage
+                blueprints={blueprints}
+                contracts={contracts}
+                setContracts={setContracts}
+                activeContractId={activeContractId}
+                setActiveContractId={setActiveContractId}
+              />
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+      <Footer />
+    </div>
   );
 }

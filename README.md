@@ -30,6 +30,8 @@ The application is currently running at: **http://localhost:5174**
 - Support for multiple field types: Text, Date, Signature, Checkbox
 - Visual field positioning on canvas
 - Field metadata management (label, type, coordinates)
+- **Sample Data**: One-click loading of pre-configured blueprints for quick demo
+- **Data Management**: Clear all data functionality for fresh starts
 
 ### 📄 **Contract Lifecycle**
 - **Status Flow**: Created → Approved → Sent → Signed → Locked
@@ -49,9 +51,10 @@ The application is currently running at: **http://localhost:5174**
 ### 🎯 **Professional UI/UX**
 - **Company Branding**: Eurosys Dubai logo integration
 - **Modern Design**: Clean, intuitive interface with consistent styling
-- **Responsive Layout**: Mobile-friendly with adaptive components
+- **Responsive Design**: Mobile-optimized layouts with proper breakpoints and touch-friendly interfaces
 - **Visual Feedback**: Status indicators, loading states, and error handling
 - **Accessibility**: Semantic HTML and keyboard navigation support
+- **Full-Width Header & Footer**: Both header and footer span the entire viewport width with consistent alignment
 
 ### 💾 **Data Management**
 - **Local Storage**: Persistent data across browser sessions
@@ -259,6 +262,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - Demonstrates modern React development skills
 - Features clean architecture and professional UI design
 - Showcases full-stack frontend development capabilities
+
+## 📞 Contact Information
+
+**Soni Kumari**
+- **Phone**: [+91-9341677226](tel:+91-9341677226)
+- **Portfolio**: [https://sonikcv.netlify.app/](https://sonikcv.netlify.app/)
+- **Resume**: [View Resume](https://drive.google.com/file/d/1Rhy1LamTWd5MEV2euZmioh9KOw8jXDYD/view)
 
 ---
 
