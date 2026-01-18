@@ -1,0 +1,29 @@
+.blueprint-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.blueprint-page h1 {
+  margin-bottom: 20px;
+}
+
+.blueprint-page .panel {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.blueprint-page ul {
+  margin-bottom: 20px;
+}
+
+.blueprint-page li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 8px;
+}

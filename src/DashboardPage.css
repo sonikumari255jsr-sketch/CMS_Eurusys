@@ -1,0 +1,174 @@
+.dashboard-page {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.count-badge {
+  background: var(--primary-color);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.dashboard-card {
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.contract-row {
+  display: flex;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+  gap: 16px;
+}
+
+.contract-info {
+  flex: 2;
+}
+
+.contract-name {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.contract-sub {
+  font-size: 14px;
+  color: var(--light-text);
+}
+
+.status-pill {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-created {
+  background: #e3f2fd;
+  color: #1976d2;
+}
+
+.status-approved {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+.status-sent {
+  background: #fff3e0;
+  color: #f57c00;
+}
+
+.status-signed {
+  background: #e8f5e8;
+  color: #388e3c;
+}
+
+.status-locked {
+  background: #fce4ec;
+  color: #c2185b;
+}
+
+.status-revoked {
+  background: #ffebee;
+  color: #d32f2f;
+}
+
+.contract-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.open-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--primary-color);
+  background: var(--primary-color);
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.delete-btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #ff6b6b;
+  background: #ff6b6b;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.empty-state {
+  padding: 40px;
+  text-align: center;
+  color: var(--light-text);
+  font-size: 16px;
+}
+
+.editor-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.editor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.status-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.status-box {
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-align: center;
+  min-width: 80px;
+  background: #eee;
+  color: #777;
+}
+
+.status-box.active {
+  background: var(--primary-color);
+  color: #fff;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.input.disabled {
+  background: #f3f3f3;
+}

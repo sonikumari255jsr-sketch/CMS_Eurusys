@@ -1,0 +1,32 @@
+.label-page {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.label-page h1 {
+  margin-bottom: 20px;
+}
+
+.label-page .panel {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.label-page ul {
+  margin-bottom: 20px;
+}
+
+.label-page li {
+  padding: 12px;
+  background: #fff;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+  margin-bottom: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+}
