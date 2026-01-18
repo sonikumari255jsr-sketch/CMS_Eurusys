@@ -1,6 +1,5 @@
 .dashboard-page {
-  max-width: 1200px;
-  margin: 0 auto;
+  min-height: 100vh;
 }
 
 .dashboard-header {
@@ -26,68 +25,32 @@
   overflow: hidden;
 }
 
-.contract-row {
+.contracts-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+}
+
+.contracts-table th,
+.contracts-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.contracts-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.contracts-table tr:hover {
+  background: #f8f9fa;
+}
+
+.actions-cell {
   display: flex;
-  align-items: center;
-  padding: 16px 20px;
-  border-bottom: 1px solid #eee;
-  gap: 16px;
-}
-
-.contract-info {
-  flex: 2;
-}
-
-.contract-name {
-  font-weight: 500;
-  font-size: 16px;
-}
-
-.contract-sub {
-  font-size: 14px;
-  color: var(--light-text);
-}
-
-.status-pill {
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 500;
-}
-
-.status-created {
-  background: #e3f2fd;
-  color: #1976d2;
-}
-
-.status-approved {
-  background: #f3e5f5;
-  color: #7b1fa2;
-}
-
-.status-sent {
-  background: #fff3e0;
-  color: #f57c00;
-}
-
-.status-signed {
-  background: #e8f5e8;
-  color: #388e3c;
-}
-
-.status-locked {
-  background: #fce4ec;
-  color: #c2185b;
-}
-
-.status-revoked {
-  background: #ffebee;
-  color: #d32f2f;
-}
-
-.contract-actions {
-  display: flex;
-  gap: 8px;
+  gap: 6px;
   flex-wrap: wrap;
 }
 
@@ -169,6 +132,54 @@
   border-collapse: collapse;
 }
 
-.input.disabled {
-  background: #f3f3f3;
+.contract-canvas {
+  position: relative;
+  width: 100%;
+  height: 800px;
+  background: #f9f9f9;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  margin-top: 20px;
+  overflow: auto;
+}
+
+.field-container {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 250px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.field-label {
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 100px;
+  color: var(--text-color);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border-color);
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter-btn.active {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
 }

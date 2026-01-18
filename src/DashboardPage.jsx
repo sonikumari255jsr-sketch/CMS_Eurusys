@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Header from "./Header";
 import './DashboardPage.css';
 
 const CONTRACT_STATUS = {
@@ -35,6 +36,7 @@ function renderInput(field, contract, onChange) {
   const common = {
     disabled: locked,
     className: locked ? "input disabled" : "input",
+    placeholder: field.label,
   };
 
   switch (field.type) {
@@ -85,6 +87,7 @@ export default function DashboardPage({
 }) {
   const [selectedBlueprintId, setSelectedBlueprintId] = useState("");
   const [newContractName, setNewContractName] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   function createContract() {
     if (!selectedBlueprintId) return alert("Select blueprint");
@@ -143,9 +146,26 @@ export default function DashboardPage({
     (b) => b.id === activeContract?.blueprintId
   );
 
+  const getFilteredContracts = () => {
+    switch (statusFilter) {
+      case 'active':
+        return contracts.filter(c => ['CREATED', 'APPROVED'].includes(c.status));
+      case 'pending':
+        return contracts.filter(c => c.status === 'SENT');
+      case 'signed':
+        return contracts.filter(c => ['SIGNED', 'LOCKED'].includes(c.status));
+      default:
+        return contracts;
+    }
+  };
+
+  const filteredContracts = getFilteredContracts();
+
   return (
     <div className="dashboard-page">
-      <h1 className="main-title">Contracts Dashboard</h1>
+      <Header />
+      <div className="page-content">
+        <h1 className="main-title">Contracts Dashboard</h1>
 
       <Link to="/" className="link">Create Blueprint</Link>
 
@@ -154,8 +174,35 @@ export default function DashboardPage({
         <div className="dashboard-header">
           <h2 className="section-title">Contracts</h2>
           <span className="count-badge">
-            {contracts.length} Contracts
+            {filteredContracts.length} Contracts
           </span>
+        </div>
+
+        <div className="filter-buttons">
+          <button
+            className={`filter-btn ${statusFilter === 'all' ? 'active' : ''}`}
+            onClick={() => setStatusFilter('all')}
+          >
+            All
+          </button>
+          <button
+            className={`filter-btn ${statusFilter === 'active' ? 'active' : ''}`}
+            onClick={() => setStatusFilter('active')}
+          >
+            Active
+          </button>
+          <button
+            className={`filter-btn ${statusFilter === 'pending' ? 'active' : ''}`}
+            onClick={() => setStatusFilter('pending')}
+          >
+            Pending
+          </button>
+          <button
+            className={`filter-btn ${statusFilter === 'signed' ? 'active' : ''}`}
+            onClick={() => setStatusFilter('signed')}
+          >
+            Signed
+          </button>
         </div>
 
         <div className="panel">
@@ -185,54 +232,60 @@ export default function DashboardPage({
         </div>
 
         <div className="dashboard-card">
-          {contracts.length === 0 && (
+          {filteredContracts.length === 0 ? (
             <div className="empty-state">
-              📄 No contracts yet. Create your first contract.
+              📄 No contracts found for the selected filter.
             </div>
-          )}
-
-          {contracts.map((c) => (
-            <div key={c.id} className="contract-row">
-              <div className="contract-info">
-                <div className="contract-name">{c.name}</div>
-                <div className="contract-sub">
-                  {c.blueprintName}
-                </div>
-              </div>
-
-              <div>
-                <span className={`status-pill status-${c.status.toLowerCase()}`}>
-                  {c.status}
-                </span>
-              </div>
-
-              <div className="contract-actions">
-                <button
-                  className="open-btn"
-                  onClick={() => setActiveContractId(c.id)}
-                >
-                  Open
-                </button>
-
-                {STATUS_FLOW[c.status].map((s) => (
-                  <button
-                    key={s}
-                    className="action-btn"
-                    onClick={() => updateStatus(c.id, s)}
-                  >
-                    {s}
-                  </button>
+          ) : (
+            <table className="contracts-table">
+              <thead>
+                <tr>
+                  <th>Contract Name</th>
+                  <th>Blueprint Name</th>
+                  <th>Status</th>
+                  <th>Created Date</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredContracts.map((c) => (
+                  <tr key={c.id}>
+                    <td>{c.name}</td>
+                    <td>{c.blueprintName}</td>
+                    <td>
+                      <span className={`status-pill status-${c.status.toLowerCase()}`}>
+                        {c.status}
+                      </span>
+                    </td>
+                    <td>{c.createdAt}</td>
+                    <td className="actions-cell">
+                      <button
+                        className="open-btn"
+                        onClick={() => setActiveContractId(c.id)}
+                      >
+                        Open
+                      </button>
+                      {STATUS_FLOW[c.status].map((s) => (
+                        <button
+                          key={s}
+                          className="action-btn"
+                          onClick={() => updateStatus(c.id, s)}
+                        >
+                          {s}
+                        </button>
+                      ))}
+                      <button
+                        className="delete-btn"
+                        onClick={() => deleteContract(c.id)}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
                 ))}
-
-                <button
-                  className="delete-btn"
-                  onClick={() => deleteContract(c.id)}
-                >
-                  Delete
-                </button>
-              </div>
-            </div>
-          ))}
+              </tbody>
+            </table>
+          )}
         </div>
       </section>
 
@@ -268,26 +321,30 @@ export default function DashboardPage({
               })}
             </div>
 
-            <table className="table">
-              
-              <tbody>
-                {activeBlueprint.fields.map((f) => (
-                  <tr key={f.id}>
-                    <td>{f.label}</td>
-                    <td>
-                      {renderInput(
-                        f,
-                        activeContract,
-                        updateFieldValue
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <div className="contract-canvas">
+              {activeBlueprint.fields.map((f, index) => {
+                // Calculate position with better spacing to avoid overlaps
+                const defaultX = 50 + (index % 2) * 400; // Alternate left/right
+                const defaultY = 50 + Math.floor(index / 2) * 80; // Stack vertically
+                const x = f.x !== undefined ? f.x : defaultX;
+                const y = f.y !== undefined ? f.y : defaultY;
+                
+                return (
+                  <div
+                    key={f.id}
+                    className="field-container"
+                    style={{ left: x, top: y }}
+                  >
+                    <label className="field-label">{f.label}:</label>
+                    {renderInput(f, activeContract, updateFieldValue)}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </section>
       )}
+      </div>
     </div>
   );
 }

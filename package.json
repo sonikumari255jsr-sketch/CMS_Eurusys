@@ -1,5 +1,6 @@
 {
-  "name": "cmp",
+  "name": "contract-management-platform",
+  "description": "A frontend-based Contract Management Platform built with React",
   "private": true,
   "version": "0.0.0",
   "type": "module",

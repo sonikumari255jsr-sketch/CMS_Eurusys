@@ -1,6 +1,5 @@
 .label-page {
-  max-width: 800px;
-  margin: 0 auto;
+  min-height: 100vh;
 }
 
 .label-page h1 {
@@ -9,9 +8,22 @@
 
 .label-page .panel {
   display: flex;
-  gap: 12px;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.input-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
 }
 
 .label-page ul {
