@@ -36,26 +36,19 @@ const FIELD_TYPES = ["Text", "Date", "Checkbox", "Signature"];
 
 /* ================== APP ================== */
 export default function App() {
-  const [blueprints, setBlueprints] = useState([]);
-  const [contracts, setContracts] = useState([]);
-  const [activeContractId, setActiveContractId] = useState(null);
+  const [blueprints, setBlueprints] = useState(() => {
+    const saved = localStorage.getItem('blueprints');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-  // Load data from localStorage on mount
-  useEffect(() => {
-    const savedBlueprints = localStorage.getItem('blueprints');
-    const savedContracts = localStorage.getItem('contracts');
-    const savedActiveContractId = localStorage.getItem('activeContractId');
+  const [contracts, setContracts] = useState(() => {
+    const saved = localStorage.getItem('contracts');
+    return saved ? JSON.parse(saved) : [];
+  });
 
-    if (savedBlueprints) {
-      setBlueprints(JSON.parse(savedBlueprints));
-    }
-    if (savedContracts) {
-      setContracts(JSON.parse(savedContracts));
-    }
-    if (savedActiveContractId) {
-      setActiveContractId(savedActiveContractId);
-    }
-  }, []);
+  const [activeContractId, setActiveContractId] = useState(() => {
+    return localStorage.getItem('activeContractId') || null;
+  });
 
   // Save data to localStorage whenever state changes
   useEffect(() => {
